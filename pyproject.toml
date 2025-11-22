@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nexo-client"
-version = "0.0.1"
+version = "0.0.2"
 description = "Client package for Nexo"
 authors = [
     { name = "Agra Bima Yuda", email = "agra@nexmedis.com" }
@@ -106,14 +106,11 @@ dependencies = [
 
 [tool.setuptools]
 packages = [
-    "nexo.client",
-    "nexo.client.nexo",
+    "nexo.client"
 ]
 
 [tool.setuptools.package-data]
 "nexo.client" = ["*.json", "*.yaml"]
-"nexo.client.nexo" = ["*.json", "*.yaml"]
 
 [tool.setuptools.package-dir]
 "nexo.client" = "src"
-"nexo.client.nexo" = "src/nexo"
