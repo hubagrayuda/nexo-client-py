@@ -1,5 +1,5 @@
 from Crypto.PublicKey.RSA import RsaKey
-from typing import Generic
+from typing import ClassVar, Generic
 from nexo.database.enums import CacheOrigin, CacheLayer
 from nexo.database.handlers import RedisHandler
 from nexo.logging.logger import Client
@@ -13,7 +13,7 @@ from .config import ClientConfigT
 
 
 class ClientService(Generic[ClientConfigT]):
-    resource: Resource
+    _resource: ClassVar[Resource]
 
     def __init__(
         self,
@@ -39,7 +39,7 @@ class ClientService(Generic[ClientConfigT]):
         self._publishers = publishers
 
         self._namespace = self._redis.config.additional.build_namespace(
-            self.resource.aggregate(AggregateField.KEY),
+            self._resource.aggregate(AggregateField.KEY),
             use_self_base=True,
             client=self._config.key,
             origin=CacheOrigin.CLIENT,
