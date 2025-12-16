@@ -39,7 +39,7 @@ class ClientService(Generic[ClientConfigT]):
         self._publishers = publishers
 
         self._namespace = self._redis.config.additional.build_namespace(
-            self._resource.aggregate(AggregateField.KEY),
+            self._resource.aggregate(AggregateField.KEY, sep=":"),
             use_self_base=True,
             client=self._config.key,
             origin=CacheOrigin.CLIENT,
