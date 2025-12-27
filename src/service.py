@@ -38,9 +38,8 @@ class ClientService(Generic[ClientConfigT]):
         self._redis = redis
         self._publishers = publishers
 
-        self._namespace = self._redis.config.additional.build_namespace(
+        self._namespace = self._redis.config.build_namespace(
             self._resource.aggregate(AggregateField.KEY, sep=":"),
-            use_self_base=True,
             client=self._config.key,
             origin=CacheOrigin.CLIENT,
             layer=CacheLayer.SERVICE,
